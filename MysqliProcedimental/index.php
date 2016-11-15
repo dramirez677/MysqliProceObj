@@ -18,27 +18,20 @@ and open the template in the editor.
         
         
         //obtengo los datos de la tabla usuario
-        if($conexion->datos_tabla("usuario")){
+        $conexion->datos_tabla("usuario");
             
-            echo "Consulta realiza con exito"."<br><br>";
+
+//        //inserto un usuario en la base de datos
+//        if($conexion->insertar_fila("usuario","prueba", "apellidos", 24, "dani_dj09@hotmail.com", 123456789)){
+//            
+//            echo "Insert realizado con exito"."<br><br>";
+//        }
+        
+        while($conexion->siguiente()){
             
-            $fila = $conexion->obtener_fila();
-            
-            for($i=0;$i<count($fila);$i++){
-            
-                echo $fila[$i]."<br>";
-            }
+            echo $conexion->obtener_campo("nombre")."<br>";
         }
         
-        
-        
-        //inserto un usuario en la base de datos
-        if($conexion->insertar_fila("usuario","prueba", "apellidos", 24, "dani_dj09@hotmail.com", 123456789)){
-            
-            echo "Insert realizado con exito"."<br><br>";
-        }
-        
-        $conexion->obtener_campo("nombre");
         
 //        if($conexion->borrar_fila("usuario", "dani_dj09@hotmail.com")){
 //            

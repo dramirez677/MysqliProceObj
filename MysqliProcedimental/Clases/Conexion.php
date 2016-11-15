@@ -17,8 +17,9 @@ class Conexion {
     private $usuario;
     private $password;
     
-    private $conexion;
-    private $result;
+    private $conexion; //variable igualada a mysqli_connect
+    private $result; //cursor donde rellena los datos
+    private $fila; //fila del cursor para poder obtener sus datos
     
     function __construct($bd, $usuario, $password) {
         $this->bd = $bd;
@@ -31,7 +32,7 @@ class Conexion {
     private function conectar(){
         
         $this->conexion = mysqli_connect("localhost",  $this->usuario,  $this->password, $this->bd);
-        echo "Conectado correctamente";
+        echo "Conectado correctamente"."<br>";
     }
     
     
@@ -97,25 +98,16 @@ class Conexion {
     
     
     
-    function obtener_fila(){
+    function siguiente(){
         
-        if(isset($this->result)){
-            
-            mysqli_free_result($this->result);
-        }
-        
-        return mysqli_fetch_array($this->result);
+        return $this->fila = mysqli_fetch_array($this->result);
     }
     
     function obtener_campo($campo){
         
-        return $this->result[$campo];
+        return $this->fila[$campo];
     }
     
-    private function liberar_result(){
-        
-        return mysqli_free_result($this->result);
-    }
     
     function cerrar_sesion(){
         
