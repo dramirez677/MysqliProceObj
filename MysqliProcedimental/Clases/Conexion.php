@@ -86,6 +86,11 @@ class Conexion {
     
     function actualizar_fila($tabla,$nombre,$apellidos,$edad,$email,$tlf,$email2){
         
+        if(isset($this->result)){
+            
+            mysqli_free_result($this->result);
+        }
+        
         $query = "update ".$tabla." set nombre='".$nombre."',apellidos='".$apellidos."',edad=".$edad.",email='".$email."',tlf=".$tlf." where email='".$email2."'";
         return $this->result = mysqli_query($this->conexion, $query);
     }
@@ -94,7 +99,17 @@ class Conexion {
     
     function obtener_fila(){
         
+        if(isset($this->result)){
+            
+            mysqli_free_result($this->result);
+        }
+        
         return mysqli_fetch_array($this->result);
+    }
+    
+    function obtener_campo($campo){
+        
+        return $this->result[$campo];
     }
     
     private function liberar_result(){
