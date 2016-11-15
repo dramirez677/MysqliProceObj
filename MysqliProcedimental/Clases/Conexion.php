@@ -32,7 +32,7 @@ class Conexion {
     private function conectar(){
         
         $this->conexion = mysqli_connect("localhost",  $this->usuario,  $this->password, $this->bd);
-        echo "Conectado correctamente"."<br>";
+        echo "Conectado correctamente"."<br><br>";
     }
     
     

@@ -29,7 +29,8 @@ and open the template in the editor.
         
         while($conexion->siguiente()){
             
-            echo $conexion->obtener_campo("nombre")."<br>";
+            echo "Nombre[".$conexion->obtener_campo("nombre")."] Apellidos[".$conexion->obtener_campo("apellidos")."] Edad[".$conexion->obtener_campo("edad")
+                    ."] Email[".$conexion->obtener_campo("email")."] Tlf[".$conexion->obtener_campo("tlf")."]<br>";
         }
         
         
@@ -111,7 +112,7 @@ and open the template in the editor.
 //            echo "Registro no insertado con exito";
 //        }
 
-        $conexion->close();
+//        $conexion->cerrar_sesion();
         ?>
     </body>
 </html>
